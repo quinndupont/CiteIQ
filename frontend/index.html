@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CiteIQ - Citation Intelligence Quotient</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>CiteIQ</h1>
+      <p class="subtitle">Citation Intelligence Quotient for Academic Research</p>
+    </header>
+
+    <main>
+      <section class="search-section">
+        <form id="search-form">
+          <div class="search-box">
+            <input
+              type="text"
+              id="author-input"
+              placeholder="Enter author name (e.g., Andrew Ng)"
+              autocomplete="off"
+              required
+            >
+            <button type="submit" id="search-btn">Search</button>
+          </div>
+        </form>
+
+        <div id="author-results" class="author-results hidden">
+          <h3>Select an author:</h3>
+          <ul id="author-list"></ul>
+        </div>
+      </section>
+
+      <section id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Calculating CiteIQ...</p>
+      </section>
+
+      <section id="error" class="error hidden">
+        <p id="error-message"></p>
+        <button onclick="clearError()">Try Again</button>
+      </section>
+
+      <section id="results" class="results hidden">
+        <div class="citeiq-header">
+          <h2 id="author-name"></h2>
+          <div class="citeiq-scores">
+            <div class="citeiq-score primary">
+              <span class="label">CiteIQ-h</span>
+              <span id="citeiq-h" class="value"></span>
+            </div>
+            <div class="citeiq-score">
+              <span class="label">CiteIQ-i10</span>
+              <span id="citeiq-i10" class="value"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-value" id="paper-count">0</span>
+            <span class="stat-label">Papers</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="total-weighted">0</span>
+            <span class="stat-label">Total Weighted</span>
+          </div>
+          <div class="stat-card warning" id="retraction-card">
+            <span class="stat-value" id="retraction-count">0</span>
+            <span class="stat-label">Retractions</span>
+          </div>
+          <div class="stat-card warning" id="deindexed-card">
+            <span class="stat-value" id="deindexed-count">0</span>
+            <span class="stat-label">De-indexed</span>
+          </div>
+        </div>
+
+        <div class="papers-section">
+          <h3>Paper Breakdown <button id="toggle-papers" class="toggle-btn">Show All</button></h3>
+          <table id="papers-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Citations</th>
+                <th>Position</th>
+                <th>Weight</th>
+                <th>Weighted</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="papers-body"></tbody>
+          </table>
+        </div>
+
+        <div class="meta-info">
+          <p id="cache-status"></p>
+          <button onclick="refreshCiteIQ()">Refresh</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p><strong>CiteIQ-h</strong>: h papers with at least h weighted citations (comparable to h-index)</p>
+      <p><strong>CiteIQ-i10</strong>: papers with at least 10 weighted citations (comparable to i10-index)</p>
+      <p>Weighting: First author (20%), Last author (20%), Middle authors (60% shared)</p>
+      <p>Data source: <a href="https://openalex.org" target="_blank">OpenAlex</a></p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

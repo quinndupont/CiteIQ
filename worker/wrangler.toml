@@ -1,0 +1,17 @@
+name = "iqm-api"
+main = "src/index.ts"
+compatibility_date = "2024-03-14"
+
+[vars]
+ENVIRONMENT = "production"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "iqm-db"
+database_id = "6f2ea357-6bb7-43e0-b96e-368327c9ea5f"
+
+# KV Namespace for caching
+[[kv_namespaces]]
+binding = "CACHE"
+id = "b65d63f5c76043c59357c6d1331bc82e"
