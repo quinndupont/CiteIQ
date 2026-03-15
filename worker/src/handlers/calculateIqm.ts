@@ -83,6 +83,7 @@ export async function calculateIqm(c: Context<{ Bindings: Env }>) {
     // Get the author name from the first work where they appear
     for (const work of works) {
       for (const authorship of work.authorships) {
+        if (!authorship.author.id) continue;
         const workAuthorId = authorship.author.id.replace('https://openalex.org/', '');
         if (workAuthorId === authorId || `https://openalex.org/${authorId}` === authorship.author.id) {
           authorName = authorship.author.display_name;

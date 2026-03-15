@@ -78,6 +78,7 @@ export function findAuthorPosition(
   const normalizedTargetId = targetAuthorId.replace('https://openalex.org/', '');
 
   for (const authorship of authorships) {
+    if (!authorship.author.id) continue;
     const authorId = authorship.author.id.replace('https://openalex.org/', '');
     if (authorId === normalizedTargetId) {
       return { position: authorship.author_position, found: true };
