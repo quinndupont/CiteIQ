@@ -21,7 +21,7 @@ export async function searchAuthor(c: Context<{ Bindings: Env }>) {
       country: author.last_known_institutions?.[0]?.country_code || null,
       worksCount: author.works_count,
       citedByCount: author.cited_by_count,
-      orcid: author.orcid?.replace('https://orcid.org/', '') || null,
+      orcid: author.orcid ? author.orcid.replace('https://orcid.org/', '') : null,
     }));
 
     return c.json({
