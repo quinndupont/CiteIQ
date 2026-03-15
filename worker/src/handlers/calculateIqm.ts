@@ -27,6 +27,7 @@ export async function calculateIqm(c: Context<{ Bindings: Env }>) {
             hasRetractions: cached.hasRetractions,
           },
           iqm: {
+            hIndex: cached.hIndex,
             h: cached.iqmH,
             i10: cached.iqmI10,
             totalWeightedCitations: cached.totalWeightedCitations,
@@ -65,6 +66,7 @@ export async function calculateIqm(c: Context<{ Bindings: Env }>) {
           hasRetractions: false,
         },
         iqm: {
+          hIndex: 0,
           h: 0,
           i10: 0,
           totalWeightedCitations: 0,
@@ -103,6 +105,7 @@ export async function calculateIqm(c: Context<{ Bindings: Env }>) {
         hasRetractions: result.hasRetractions,
       },
       iqm: {
+        hIndex: result.hIndex,
         h: result.iqmH,
         i10: result.iqmI10,
         totalWeightedCitations: result.totalWeightedCitations,
