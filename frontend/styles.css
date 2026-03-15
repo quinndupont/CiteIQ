@@ -208,6 +208,12 @@ header h1 {
   border-radius: 8px;
 }
 
+.citeiq-score.comparison {
+  background: #f5f7fa;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
 .citeiq-score .label {
   font-size: 0.75rem;
   color: #666;
@@ -224,6 +230,10 @@ header h1 {
 
 .citeiq-score.primary .value {
   color: #2d3a8c;
+}
+
+.citeiq-score.comparison .value {
+  color: #666;
 }
 
 /* Stats Grid */

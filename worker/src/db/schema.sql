@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS cached_iqm;
 CREATE TABLE IF NOT EXISTS cached_iqm (
   author_id TEXT PRIMARY KEY,
   author_name TEXT NOT NULL,
+  h_index INTEGER NOT NULL,
   iqm_h INTEGER NOT NULL,
   iqm_i10 INTEGER NOT NULL,
   total_weighted_citations REAL NOT NULL,

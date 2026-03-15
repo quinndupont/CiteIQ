@@ -21,6 +21,8 @@ export interface AuthorIQM {
   authorId: string;
   authorName: string;
   hasRetractions: boolean;
+  // Traditional h-index (for comparison)
+  hIndex: number;
   // IQM-h: h papers with at least h weighted citations (comparable to h-index)
   iqmH: number;
   // IQM-i10: papers with at least 10 weighted citations (comparable to i10-index)
@@ -83,6 +85,27 @@ export function findAuthorPosition(
   }
 
   return { position: 'middle', found: false };
+}
+
+/**
+ * Calculate traditional h-index (using raw citations)
+ * A researcher has h-index of h if they have h papers with at least h citations each
+ */
+export function calculateHIndex(papers: PaperIQM[]): number {
+  // Sort papers by raw citations (highest first)
+  const sortedByCitations = [...papers].sort((a, b) => b.citations - a.citations);
+
+  let h = 0;
+  for (let i = 0; i < sortedByCitations.length; i++) {
+    // Paper at index i has rank (i + 1)
+    // If citations >= rank, this paper contributes to h-index
+    if (sortedByCitations[i].citations >= i + 1) {
+      h = i + 1;
+    } else {
+      break;
+    }
+  }
+  return h;
 }
 
 /**
@@ -198,6 +221,7 @@ export async function calculateAuthorIQM(
   papers.sort((a, b) => b.weightedCitations - a.weightedCitations);
 
   // Calculate h-index style metrics
+  const hIndex = calculateHIndex(papers);
   const iqmH = calculateIqmH(papers);
   const iqmI10 = calculateIqmI10(papers);
 
@@ -205,6 +229,7 @@ export async function calculateAuthorIQM(
     authorId,
     authorName,
     hasRetractions: retractionCount > 0,
+    hIndex,
     iqmH,
     iqmI10,
     totalWeightedCitations: Math.round(totalIqm * 100) / 100,
@@ -222,12 +247,13 @@ export async function cacheIQMResult(db: D1Database, result: AuthorIQM): Promise
   await db
     .prepare(`
       INSERT OR REPLACE INTO cached_iqm
-      (author_id, author_name, iqm_h, iqm_i10, total_weighted_citations, paper_count, retraction_count, deindexed_count, calculated_at, papers_json)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      (author_id, author_name, h_index, iqm_h, iqm_i10, total_weighted_citations, paper_count, retraction_count, deindexed_count, calculated_at, papers_json)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `)
     .bind(
       result.authorId,
       result.authorName,
+      result.hIndex,
       result.iqmH,
       result.iqmI10,
       result.totalWeightedCitations,
@@ -253,6 +279,7 @@ export async function getCachedIQM(
     .first<{
       author_id: string;
       author_name: string;
+      h_index: number;
       iqm_h: number;
       iqm_i10: number;
       total_weighted_citations: number;
@@ -271,6 +298,7 @@ export async function getCachedIQM(
     authorId: row.author_id,
     authorName: row.author_name,
     hasRetractions: row.retraction_count > 0,
+    hIndex: row.h_index,
     iqmH: row.iqm_h,
     iqmI10: row.iqm_i10,
     totalWeightedCitations: row.total_weighted_citations,

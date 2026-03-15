@@ -119,6 +119,7 @@ function displayResults(data) {
   // CiteIQ Scores (h-index style)
   document.getElementById('citeiq-h').textContent = data.iqm.h;
   document.getElementById('citeiq-i10').textContent = data.iqm.i10;
+  document.getElementById('h-index').textContent = data.iqm.hIndex;
 
   // Stats
   document.getElementById('paper-count').textContent = data.iqm.paperCount;
