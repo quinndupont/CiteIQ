@@ -355,6 +355,107 @@ header h1 {
   font-size: 0.85rem;
 }
 
+/* Methodology Section */
+.methodology {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+.methodology h2 {
+  font-size: 2rem;
+  color: #1a1a2e;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.methodology-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.methodology-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.methodology-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.methodology-section h3 {
+  font-size: 1.3rem;
+  color: #2d3a8c;
+  margin-bottom: 1rem;
+}
+
+.methodology-section p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.methodology-section ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.methodology-section li {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+.formula {
+  background: #f0f4ff;
+  border-left: 4px solid #4a6cf7;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
+.formula strong {
+  color: #2d3a8c;
+}
+
+.formula em {
+  color: #4a6cf7;
+  font-style: italic;
+}
+
+.formula-example {
+  background: #f5f7fa;
+  border-left: 4px solid #999;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.comparison-example {
+  background: #fffbeb;
+  border-left: 4px solid #fbbf24;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.methodology-section a {
+  color: #4a6cf7;
+  text-decoration: none;
+}
+
+.methodology-section a:hover {
+  text-decoration: underline;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -372,6 +473,11 @@ footer p {
 
 footer a {
   color: #4a6cf7;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 /* Utility */
@@ -401,5 +507,24 @@ footer a {
   #papers-table th,
   #papers-table td {
     padding: 0.5rem 0.25rem;
+  }
+
+  .methodology {
+    padding: 1.5rem 1rem;
+  }
+
+  .methodology h2 {
+    font-size: 1.5rem;
+  }
+
+  .methodology-section h3 {
+    font-size: 1.1rem;
+  }
+
+  .formula,
+  .formula-example,
+  .comparison-example {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
   }
 }

@@ -103,11 +103,106 @@
       </section>
     </main>
 
+    <section class="methodology">
+      <h2>About CiteIQ</h2>
+
+      <div class="methodology-content">
+        <div class="methodology-section">
+          <h3>What is CiteIQ?</h3>
+          <p>
+            CiteIQ (Citation Intelligence Quotient) is an integrity-weighted citation metric that improves
+            upon traditional metrics like the h-index by accounting for author contribution position and
+            research integrity issues.
+          </p>
+        </div>
+
+        <div class="methodology-section">
+          <h3>Mathematical Formula</h3>
+          <p>For each paper, we calculate <strong>Weighted Citations</strong>:</p>
+          <div class="formula">
+            Weighted Citations = Citations × Author Position Weight
+          </div>
+
+          <p><strong>Author Position Weights:</strong></p>
+          <ul>
+            <li><strong>Single author:</strong> 100%</li>
+            <li><strong>Two authors:</strong> First author 20%, Last author 80%</li>
+            <li><strong>Three or more authors:</strong> First author 20%, Last author 20%, Middle authors share 60%</li>
+          </ul>
+
+          <p class="formula-example">
+            Example: A middle author on a 5-author paper with 100 citations:<br>
+            Middle authors = 5 - 2 = 3<br>
+            Weight = 60% ÷ 3 = 20%<br>
+            Weighted Citations = 100 × 0.20 = 20
+          </p>
+
+          <div class="formula">
+            <strong>CiteIQ-h:</strong> Largest number <em>h</em> such that the author has <em>h</em> papers
+            with at least <em>h</em> weighted citations each
+          </div>
+
+          <div class="formula">
+            <strong>CiteIQ-i10:</strong> Number of papers with at least 10 weighted citations
+          </div>
+        </div>
+
+        <div class="methodology-section">
+          <h3>Comparison with h-index</h3>
+          <p>
+            The traditional <strong>h-index</strong> counts raw citations without considering author contribution.
+            A researcher has an h-index of <em>h</em> if they have <em>h</em> papers with at least <em>h</em> citations each.
+          </p>
+
+          <p><strong>Key Differences:</strong></p>
+          <ul>
+            <li><strong>Author Position:</strong> CiteIQ-h weights citations based on authorship position,
+                recognizing that first and last authors typically contribute more than middle authors</li>
+            <li><strong>Integrity Filtering:</strong> CiteIQ-h assigns zero weight to retracted papers and
+                papers in de-indexed journals, while h-index counts all citations regardless of validity</li>
+            <li><strong>Fairness:</strong> CiteIQ-h prevents inflation from being a middle author on
+                highly-cited papers where actual contribution may be minimal</li>
+          </ul>
+
+          <p class="comparison-example">
+            <strong>Example:</strong> An author with 10 papers as middle author (each with 50 citations) would have:<br>
+            <strong>h-index:</strong> 10 (all papers count equally)<br>
+            <strong>CiteIQ-h:</strong> Likely lower, as middle author weight reduces effective citations
+          </p>
+        </div>
+
+        <div class="methodology-section">
+          <h3>Why CiteIQ?</h3>
+          <p><strong>Addresses key limitations of traditional metrics:</strong></p>
+          <ul>
+            <li><strong>Academic Convention:</strong> Reflects the established norm in many fields where
+                first and last authors make primary intellectual contributions</li>
+            <li><strong>Gaming Resistance:</strong> Harder to inflate by simply adding one's name to
+                numerous collaborative papers</li>
+            <li><strong>Research Integrity:</strong> Automatically excludes retracted and fraudulent work
+                from the calculation</li>
+            <li><strong>Quality Over Quantity:</strong> Emphasizes meaningful contributions rather than
+                mere participation</li>
+            <li><strong>Transparency:</strong> Open-source calculation using publicly available data from
+                <a href="https://openalex.org" target="_blank">OpenAlex</a></li>
+          </ul>
+        </div>
+
+        <div class="methodology-section">
+          <h3>Limitations</h3>
+          <ul>
+            <li>Author position conventions vary by field (some fields use alphabetical ordering)</li>
+            <li>Does not account for individual contribution statements or co-first authorships</li>
+            <li>Dependent on accuracy of OpenAlex data and retraction/de-indexing databases</li>
+            <li>May disadvantage researchers in fields with different authorship norms</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <footer>
-      <p><strong>CiteIQ-h</strong>: h papers with at least h weighted citations (comparable to h-index)</p>
-      <p><strong>CiteIQ-i10</strong>: papers with at least 10 weighted citations (comparable to i10-index)</p>
-      <p>Weighting: First author (20%), Last author (20%), Middle authors (60% shared)</p>
       <p>Data source: <a href="https://openalex.org" target="_blank">OpenAlex</a></p>
+      <p>Open source project - <a href="https://github.com/quinndupont/CiteIQ" target="_blank">View on GitHub</a></p>
     </footer>
   </div>
 
